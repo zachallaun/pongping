@@ -1,0 +1,13 @@
+#Vera,Zach,Allison,Dominik,Sarah,Eric,David
+Vera Zach
+Allison Dominik
+Sarah Eric
+Zach David
+Vera Allison
+Sarah Dominik
+Eric David
+Zach Vera
+Vera Sarah
+David Allison
+Allison Zach
+Dominik David
