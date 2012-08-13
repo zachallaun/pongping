@@ -31,7 +31,7 @@
 (defn best-matches-for
   "Returns a sequence of [quality player] pairs sorted by match quality."
   [id players]
-  (let [p1 (id->player players id)]
+  (let [p1 (or (id->player players id) (new-player id))]
     (->> (disj players p1)
          (map (fn [p2] [(match-quality engine p1 p2) p2]))
          (sort-by first)
