@@ -69,7 +69,7 @@
   (reset! players #{})
   (matches-from-file! players *match-file*)
   (let [stats [["Name"    #(str (:id %))]
-               [" Rating"  #(format " %.2f" (rating %))]
+               [" Rating" #(format " %.2f" (rating %))]
                ["Mean"    #(format "%.2f" (:mean %))]
                ["Std-Dev" #(format "%.2f" (:std-dev %))]
                ["#Games"  #(str (:games %))]
