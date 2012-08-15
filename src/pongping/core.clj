@@ -76,16 +76,17 @@
                ["Win%" #(format "%.2f"
                                 (float (/ (:wins %)
                                           (:games %))))]]
-        players (reverse (sort-by #(rating %) @players))
-        header (apply str (interpose "\t" (map first stats)))
+        players (map-indexed (fn [i p] [(inc i) p])
+                             (reverse (sort-by #(rating %) @players)))
+        header (apply str "Rank" "\t" (interpose "\t" (map first stats)))
         divider (apply str (repeat (+ 7 (count header)) "-"))]
     (println header)
     (println divider)
-    (doseq [player players]
+    (doseq [[rank player] players]
       (->> (interpose "\t" (map (fn [[_ func]]
                                   (func player))
                                stats))
-           (apply str)
+           (apply str rank "\t")
            (println)))))
 
 (defn find-matches
