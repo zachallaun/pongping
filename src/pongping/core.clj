@@ -88,16 +88,18 @@
            (apply str)
            (println)))))
 
-(defn find-matches [id]
-  (reset! players #{})
-  (matches-from-file! players *match-file*)
-  (let [matches (take 5 (best-matches-for id @players))
-        formatted (map (fn [[quality player]]
-                         (str (:id player)
-                              "\t"
-                              (format " %.4f" quality)))
-                       matches)]
-    (println "Name\t Quality")
-    (println (apply str (repeat 16 "-")))
-    (doseq [match formatted]
-      (println match))))
+(defn find-matches
+  ([id] (find-matches id 5))
+  ([id n]
+     (reset! players #{})
+     (matches-from-file! players *match-file*)
+     (let [matches (take n (best-matches-for id @players))
+           formatted (map (fn [[quality player]]
+                            (str (:id player)
+                                 "\t"
+                                 (format " %.4f" quality)))
+                          matches)]
+       (println "Name\t Quality")
+       (println (apply str (repeat 16 "-")))
+       (doseq [match formatted]
+         (println match)))))
